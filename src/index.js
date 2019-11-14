@@ -1,4 +1,5 @@
 const $ = require('jquery');
+const {item, thing} = require('./practice.js');
 
 // import $ from 'jquery';
 
@@ -12,4 +13,7 @@ $(document).ready(function(){
     const sayHello = () => console.log("hello");
 
     sayHello();
+
+    console.log(item.color);
+    console.log(thing.weight);
 });
