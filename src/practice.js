@@ -5,6 +5,7 @@ const item = {
     color: "brown"
 };
 
+//can also do "export const item" and "export const thing" but in the index.js file you have to list them individually wtih "import"
 const thing = {
     name: 'milk',
     weight: 'more than eggs',
@@ -13,5 +14,5 @@ const thing = {
 };
 
 // name export the item you're trying to export
-module.exports = {item, thing};
+export default {item, thing};
 

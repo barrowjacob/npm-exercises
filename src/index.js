@@ -1,5 +1,6 @@
-const $ = require('jquery');
-const {item, thing} = require('./practice.js');
+import $ from 'jquery';
+import cart from './practice.js';
+import sayHello from './say-hello.js';
 
 // import $ from 'jquery';
 
@@ -10,10 +11,11 @@ $(document).ready(function(){
     $('div').css('background','blue');
     $('body').append('<h1> hello world </h1>');
 
-    const sayHello = () => console.log("hello");
+    // const sayHello = () => console.log("hello");
+    //
+    // sayHello();
 
-    sayHello();
-
-    console.log(item.color);
-    console.log(thing.weight);
+    console.log(cart.item.color);
+    console.log(cart.thing.weight);
+    console.log(sayHello());
 });

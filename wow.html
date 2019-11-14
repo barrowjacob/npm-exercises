@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+   <style>
+      .replay {
+         padding: 5px;
+      }
+   </style>
+</head>
+<body>
+<div class="output">
+   <div class="message"></div>
+   <input type="number" id="input">
+   <button>Guess</button>
+</div>
+
+
+<script>
+
+    let game = {
+        "min": 1,
+        "max": 10
+    };
+    document.addEventListener("DOMContentLoaded", function(){
+        game.output = document.querySelector(".output");
+        game.message = document.querySelector(".message");
+        game.guessInput = document.querySelector("input");
+        game.btn = document.querySelector("button");
+        game.btn.addEventListener("click", guessValue);
+        init();
+    });
+
+    function guessValue() {
+        if (game.btn.classList.contains("replay")){
+            init();
+            game.btn.innerHTML = "Guess";
+            game.guessInput.style.display = "block";
+            game.btn.classList.remove("replay");
+        } else {
+
+        }
+        game.guesses++;
+        let tempGuess = game.guessInput.value;
+        game.guessInput.value = "";
+        tempGuess = parseInt(tempGuess);
+        if (isNaN(tempGuess)) {
+            message("Welcome to my guessing game! Guess a number...", "purple");
+            game.guessInput.style.borderColor = "purple";
+        } else if (tempGuess === game.num){
+            message(`You got it! The number was ${game.num}! You got it in ${game.guesses} guesses.`, "green");
+            game.guessInput.style.borderColor = "green";
+            gameOver();
+        } else if (tempGuess < game.num){
+            message(`${tempGuess} is too low. Try again...`, "blue");
+            game.guessInput.style.borderColor = "blue";
+        } else if (tempGuess > game.num){
+            message(`${tempGuess} is too high. Try again...`, "red");
+            game.guessInput.style.borderColor = "red";
+        }
+    }
+
+    function gameOver () {
+        game.btn.innerHTML = "Restart Game";
+        game.guessInput.style.display = "none";
+        game.btn.classList.add("replay");
+    }
+
+    function init(){
+        game.guesses = 0;
+        game.num = randomNum(game.min, game.max);
+        let tempMes = "Welcome to my guessing game! Guess a number...";
+        message(tempMes, "purple");
+    }
+
+    function randomNum (min, max) {
+        return Math.floor(Math.random()*(max-min + 1) + min);
+    }
+
+    function message (mes,clr){
+        game.message.innerHTML= mes;
+        game.message.style.color = clr || "black";
+        game.btn.style.backgroundColor = clr || "black";
+        game.btn.style.color = "white";
+    }
+
+
+
+
+</script>
+</body>
+</html>
